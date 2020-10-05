@@ -64,7 +64,12 @@ const NodeDefEntityFormGrid = (props) => {
       onResizeStop={onChangeLayout}
     >
       {nodeDefsInnerPage.map((childDef) => (
-        <div key={NodeDef.getUuid(childDef)} id={NodeDef.getUuid(childDef)}>
+        <div
+          key={NodeDef.getUuid(childDef)}
+          id={NodeDef.getUuid(childDef)}
+          data-node-def-name={NodeDef.getName(childDef)}
+          className="survey-form__node-def-entity-form-grid-item"
+        >
           <NodeDefSwitch
             edit={edit}
             entry={entry}

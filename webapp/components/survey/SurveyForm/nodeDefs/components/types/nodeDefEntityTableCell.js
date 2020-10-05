@@ -7,7 +7,7 @@ import * as NodeDefLayout from '@core/survey/nodeDefLayout'
 import NodeDefSwitch from '../../nodeDefSwitch'
 import * as NodeDefUiProps from '../../nodeDefUIProps'
 
-const NodeDefEntityTableCell = props => {
+const NodeDefEntityTableCell = (props) => {
   const { nodeDef, parentNode, canEditDef, renderType, onDragStart, onDragOver, onDragEnd, gridSize, windowed } = props
 
   const nodeDefUuid = NodeDef.getUuid(nodeDef)
@@ -47,9 +47,10 @@ const NodeDefEntityTableCell = props => {
     <div
       ref={elementRef}
       data-uuid={nodeDefUuid}
+      data-node-def-name={NodeDef.getName(nodeDef)}
       className="react-grid-item draggable-item"
       style={{ width: 160 * length + 'px' }}
-      onMouseDown={e => e.stopPropagation()}
+      onMouseDown={(e) => e.stopPropagation()}
       draggable={canEditDef}
       onDragStart={onDragStart}
       onDragOver={onDragOver}
