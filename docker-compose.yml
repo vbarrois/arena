@@ -1,0 +1,30 @@
+version: '2.0'
+services:
+  arena-db:
+    image: postgis/postgis:12-3.0
+    container_name: arena-db
+    environment: 
+      - POSTGRES_DB=arena
+      - POSTGRES_PASSWORD=arena
+      - POSTGRES_USER=arena
+    ports: 
+      - 5432:5432
+  openforis-arena:
+    build: .
+    depends_on:
+      - arena-db
+    container_name: openforis-arena
+    volumes:
+      - .:/openforis-arena
+    working_dir: /openforis-arena
+    command: bash -c "yarn install && yarn watch"
+    ports: 
+      - 9000:9000
+      - 9090:9090
+  adminer:
+    image: adminer:4.7.7
+    container_name: openforis-dbadmin
+    ports:
+      - 8080:8080
+volumes:
+  arena-db:
